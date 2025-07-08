@@ -1,0 +1,11 @@
+district,month,festival_flag,income_level,kirana_density,sku,demand
+Dhanbad,October,1,Low,High,Rice (10kg),300
+Dhanbad,October,1,Low,High,Tea Packets,240
+Dhanbad,October,1,Low,High,Washing Powder,210
+Mysuru,March,0,Medium,Medium,Poha (500g),130
+Mysuru,March,0,Medium,Medium,Besan (1kg),120
+Mysuru,March,0,Medium,Medium,Sandal Soap,150
+Varanasi,November,1,High,Low,Dairy Milk,340
+Varanasi,November,1,High,Low,Namkeen,290
+Varanasi,November,1,High,Low,Shampoo,320
+Bengaluru,December,0,High,High,Chips (100g),200

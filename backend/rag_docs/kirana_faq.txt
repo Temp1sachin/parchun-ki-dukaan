@@ -1,0 +1,16 @@
+Kirana + Walmart FAQs
+
+Q1: How is Walmart helping Kirana stores?
+A: Via micro-franchise model, inventory prediction tools, micro-credit, and tech support.
+
+Q2: What is the co-op stocking model?
+A: In co-op mode, Walmart only stocks what the local Kirana lacks.
+
+Q3: What data powers this simulation?
+A: District demographics, income level, festivals, inventory uploads, and ML-based demand prediction.
+
+Q4: Do Kirana stores need to change how they work?
+A: No, they retain full control and benefit from AI tools and demand forecasts.
+
+Q5: Can this work in tribal or Tier-4 areas?
+A: Yes, especially with mobile-based dashboards and regional language support.

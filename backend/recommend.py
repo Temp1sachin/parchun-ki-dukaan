@@ -1,5 +1,6 @@
 import pandas as pd
 import os
+import random
 
 # Adjust if you're running from another folder
 DATA_PATH = os.path.join(os.path.dirname(__file__), '../data')
@@ -43,12 +44,37 @@ def get_recommendations(district, mode="walmart_only"):
     else:
         skus += ["Dairy Milk (small)", "Namkeen", "Sambar Masala"]
 
-    # Remove SKUs if kiranas already stock them (if in coop mode)
+    # Deduplicate
+    skus = list(set(skus))
+
+    # Remove SKUs already stocked (if coop mode)
     if mode == "coop":
         local_kirana_skus = sku_df[sku_df['district'].str.lower() == district.lower()]['sku'].tolist()
-        skus = list(set(skus) - set(local_kirana_skus))  # Remove overlap
+        skus = list(set(skus) - set(local_kirana_skus))
 
-    # Return data
+    # Generate dummy demand scores
+    random.seed(hash(district + mode) % 10000)
+    sku_with_scores = [{"name": sku, "score": round(random.uniform(0.75, 0.98), 2)} for sku in skus]
+
+    # Dummy model performance metrics
+    metrics = {
+        "rmse": round(random.uniform(5.0, 8.0), 2),
+        "mae": round(random.uniform(2.5, 4.0), 2),
+        "accuracy": round(random.uniform(0.85, 0.95), 2)
+    }
+
+    # Optional: Comparison chart data
+    coop_comparison = None
+    if mode == "coop":
+        coop_comparison = []
+        for sku in sku_with_scores:
+            coop_comparison.append({
+                "SKU": sku["name"],
+                "Walmart-only": round(sku["score"] - random.uniform(0.03, 0.05), 2),
+                "Walmart + Co-op": sku["score"]
+            })
+
+    # Return enhanced structure
     return {
         "district": district,
         "population": int(dist_info["population"]),
@@ -56,5 +82,7 @@ def get_recommendations(district, mode="walmart_only"):
         "income_level": dist_info["income_level"],
         "mode": mode,
         "festivals": upcoming_fests,
-        "recommended_skus": list(set(skus))
+        "recommended_skus": sku_with_scores,
+        "metrics": metrics,
+        "coop_comparison": coop_comparison
     }
